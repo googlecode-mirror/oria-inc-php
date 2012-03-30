@@ -504,7 +504,7 @@ if (!function_exists('strripos')) {
 }
 // declaring strripos: (doesnt exists as for php version 4.3.4) it should be added in php5
 // its not perfect - always return lowercased string!
-// TBD: keep original casing
+// TODO: keep original casing
 if (!function_exists('str_ireplace')) {
 
 	function str_ireplace($haystack, $needle, $subject, $count = null) {
@@ -574,7 +574,7 @@ function randstring($length, $chars = 'abcdefghijklmnopqrstuvwxyz') {
 	return $s;
 }
 
-//////////////// safe-sorting hebrew
+//////////////// safe-sorting hebrew - @@ remove this?
 // hebsortby() - return an english string represents the correct
 // order of the hebrew string.
 // Attention - mixing heb with eng letters would cause troubles.
@@ -609,7 +609,7 @@ function randstring($length, $chars = 'abcdefghijklmnopqrstuvwxyz') {
   if ($l>=$a && $l<=$z){
   $return.=$letters[$l-$a];
   } else {
-  $return.=$heb[$i]; // @@ TBD Fixed - there's no such thing as $heb
+  $return.=$heb[$i]; // @@ TODO: Fixed - there's no such thing as $heb
   }
   }
 
