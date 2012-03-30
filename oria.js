@@ -23,9 +23,15 @@ if ((!document) || (!document.oriaRegisteredScripts)){
 	}
 
 	String.prototype.urlencode = function () {
-		return encodeURIComponent(this).replace(/!/g, '%21').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+').replace(/'/g, '%27'); // '
+		return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+		// From http://phpjs.org/functions/urlencode
 	}
 
+	String.prototype.urldecode = function () {
+		return decodeURIComponent((str + '').replace(/\+/g, '%20'));
+		// From http://phpjs.org/functions/urldecode
+	}
+	
 	// return an getElementById or Name.
 	// for those who are used to explorer, use All(v) instead of document.all
 	function All(v,bAlert){
@@ -52,13 +58,7 @@ if ((!document) || (!document.oriaRegisteredScripts)){
     }
 
     // return true if property exists in an object
-    function object_has(obj,prop){
-        var i;
-        for (i in obj) {
-            if (i==prop) return 1;
-        }
-        return 0;
-    }
+    //function object_has(obj,prop){ -- Deprecated. Instead please use Object.hasOwnProperty()
     
     // wrapper for attachEvent because of ie and ff
     function setEvent(obj,event,funct, bOnBubble) {
@@ -287,13 +287,13 @@ function sortSelect(obj)
   for (var i=0; i<obj.options.length; i++) {
   	//o[o.length] = new Option( obj.options[i].text, obj.options[i].value, obj.options[i].defaultSelected, obj.options[i].selected) ;
   	//o[o.length] = obj.options[i];
-  	o[o.length] = {text:obj.options[i].text, value:obj.options[i].value, selected:obj.options[i].selected, title:obj.options[i].title } ;
+  	o[o.length] = {text:obj.options[i].text, value:obj.options[i].value, selected:obj.options[i].selected, title:obj.options[i].title} ;
   }
-  if (o.length==0) { return; }
+  if (o.length==0) {return;}
   o = o.sort( 
   	function(a,b) { 
-      if ((a.text+"") < (b.text+"")) { return -1; }
-      if ((a.text+"") > (b.text+"")) { return 1; }
+      if ((a.text+"") < (b.text+"")) {return -1;}
+      if ((a.text+"") > (b.text+"")) {return 1;}
       return 0;
   	} 
   );
